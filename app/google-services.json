@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "394458456338",
+    "project_id": "gestordetareas-793e4",
+    "storage_bucket": "gestordetareas-793e4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:394458456338:android:e297da3a54194846f253cb",
+        "android_client_info": {
+          "package_name": "com.example.gestordetareas"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzwIz8ezNhFHflGBS_nOIefW_mB_GaKGE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

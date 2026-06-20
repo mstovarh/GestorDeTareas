@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mapLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_dark">
+
+    <TextView
+        android:id="@+id/tvMapTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mi ubicación actual"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/accent_green"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:padding="16dp" />
+
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <Button
+        android:id="@+id/btnBackFromMap"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:text="Volver al gestor"
+        android:textAllCaps="false"
+        android:textSize="17sp"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="@color/text_dark"
+        android:backgroundTint="@color/accent_green"
+        android:layout_margin="16dp" />
+
+</LinearLayout>
