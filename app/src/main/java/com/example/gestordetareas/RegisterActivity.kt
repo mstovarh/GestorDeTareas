@@ -11,6 +11,9 @@ class RegisterActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
 
+    // Inicializa la pantalla de registro de usuario.
+    // Configura Firebase Authentication, conecta los campos del formulario
+    // y valida que el correo y la contraseña cumplan las condiciones mínimas antes de registrar.
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
@@ -41,6 +44,9 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
+    // Registra un nuevo usuario mediante Firebase Authentication.
+    // Si el registro es exitoso, muestra un mensaje de confirmación y regresa al login.
+    // Si ocurre un error, informa al usuario que no fue posible crear la cuenta.
     private fun registerUser(email: String, password: String) {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->

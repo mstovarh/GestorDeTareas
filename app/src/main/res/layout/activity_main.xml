@@ -69,11 +69,23 @@
         android:textColor="@color/text_primary"
         android:layout_marginBottom="10dp" />
 
+    <TextView
+        android:id="@+id/tvEmptyTasks"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Aún no tienes tareas registradas"
+        android:textColor="@color/accent_olive"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:padding="16dp"
+        android:visibility="gone" />
+
     <ListView
         android:id="@+id/listTasks"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="@color/muted_gray"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="@color/card_dark"
         android:dividerHeight="1dp" />
 
 </LinearLayout>

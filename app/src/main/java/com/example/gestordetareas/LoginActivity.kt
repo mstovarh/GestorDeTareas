@@ -12,6 +12,9 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
 
+    // Inicializa la pantalla de inicio de sesión.
+    // Configura Firebase Authentication, valida si ya existe una sesión activa
+    // y prepara los eventos para iniciar sesión o ir al registro de usuario.
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -45,6 +48,9 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    // Realiza la autenticación del usuario mediante Firebase Authentication.
+    // Si las credenciales son correctas permite el acceso al gestor;
+    // si fallan, muestra un mensaje de error y bloquea el ingreso.
     private fun loginUser(email: String, password: String) {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
@@ -61,6 +67,9 @@ class LoginActivity : AppCompatActivity() {
             }
     }
 
+    // Redirige al usuario autenticado hacia la pantalla principal del gestor.
+    // Limpia la pila de pantallas para evitar que el usuario regrese al login
+    // usando el botón atrás después de iniciar sesión correctamente.
     private fun goToMain() {
         val intent = Intent(this, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

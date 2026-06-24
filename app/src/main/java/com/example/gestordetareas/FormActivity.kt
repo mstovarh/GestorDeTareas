@@ -12,6 +12,9 @@ class FormActivity : AppCompatActivity() {
     private lateinit var dbHelper: DBHelper
     private lateinit var auth: FirebaseAuth
 
+    // Método principal de la pantalla del formulario.
+    // Se ejecuta cuando se abre FormActivity y permite inicializar la interfaz,
+    // conectar los componentes visuales y configurar los eventos de los botones.
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_form)

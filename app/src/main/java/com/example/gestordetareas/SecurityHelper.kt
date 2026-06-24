@@ -1,6 +1,5 @@
 package com.example.gestordetareas
 
-import android.content.Context
 import android.security.keystore.KeyGenParameterSpec
 import android.security.keystore.KeyProperties
 import android.util.Base64
@@ -10,7 +9,7 @@ import javax.crypto.KeyGenerator
 import javax.crypto.SecretKey
 import javax.crypto.spec.GCMParameterSpec
 
-class SecurityHelper(private val context: Context) {
+class SecurityHelper() {
 
     companion object {
         private const val ANDROID_KEYSTORE = "AndroidKeyStore"
@@ -20,10 +19,16 @@ class SecurityHelper(private val context: Context) {
         private const val IV_SIZE = 12
     }
 
+    // Se ejecuta al crear una instancia de SecurityHelper.
+    // Garantiza que exista una llave segura en Android Keystore
+    // antes de realizar operaciones de cifrado o descifrado.
     init {
         createSecretKeyIfNeeded()
     }
 
+    // Crea la llave secreta de cifrado dentro de Android Keystore si aún no existe.
+    // Esta llave se usa para cifrar y descifrar los datos sensibles de la aplicación
+    // sin almacenarla directamente en el código fuente.
     private fun createSecretKeyIfNeeded() {
         val keyStore = KeyStore.getInstance(ANDROID_KEYSTORE)
         keyStore.load(null)
@@ -48,6 +53,9 @@ class SecurityHelper(private val context: Context) {
         }
     }
 
+    // Obtiene la llave secreta almacenada en Android Keystore.
+    // Esta llave es necesaria para ejecutar los procesos de cifrado y descifrado
+    // de las tareas protegidas en la base de datos local.
     private fun getSecretKey(): SecretKey {
         val keyStore = KeyStore.getInstance(ANDROID_KEYSTORE)
         keyStore.load(null)
@@ -56,6 +64,9 @@ class SecurityHelper(private val context: Context) {
         return secretKeyEntry.secretKey
     }
 
+    // Cifra un texto usando AES/GCM y lo convierte a Base64.
+    // Este método protege los datos sensibles antes de guardarlos en SQLite,
+    // evitando que se almacenen como texto plano.
     fun encryptText(plainText: String): String {
         val cipher = Cipher.getInstance(TRANSFORMATION)
         cipher.init(Cipher.ENCRYPT_MODE, getSecretKey())
@@ -68,6 +79,9 @@ class SecurityHelper(private val context: Context) {
         return Base64.encodeToString(combinedData, Base64.NO_WRAP)
     }
 
+    // Descifra un texto previamente cifrado con AES/GCM.
+    // Este método permite recuperar la información original para mostrarla
+    // únicamente dentro de la aplicación al usuario autenticado.
     fun decryptText(encryptedText: String): String {
         val combinedData = Base64.decode(encryptedText, Base64.NO_WRAP)
 
